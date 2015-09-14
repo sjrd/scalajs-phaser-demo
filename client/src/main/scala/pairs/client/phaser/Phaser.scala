@@ -19,4 +19,20 @@ class Game(
     renderer: Int = Phaser.AUTO,
     parent: String | html.Element = "") extends js.Object {
 
+  val state: StateManager = js.native
+}
+
+@js.native
+@JSGlobal("Phaser.StateManager")
+class StateManager(val game: Game) extends js.Object {
+  def add(key: String, state: State,
+      autoStart: Boolean = false): Unit = js.native
+
+  def start(key: String): Unit = js.native
+}
+
+@js.native
+@JSGlobal("Phaser.State")
+abstract class State extends js.Object {
+
 }
