@@ -5,7 +5,8 @@ import js.annotation._
 
 @js.native
 @JSName("Phaser.Game")
-class Game(width: Double, height: Double, renderer: Int,
-    parent: String) extends js.Object {
+class Game(width: Double = 800, height: Double = 600,
+    renderer: Int = Phaser.AUTO,
+    parent: String = "") extends js.Object {
 
 }
