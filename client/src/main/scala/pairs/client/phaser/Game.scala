@@ -13,4 +13,5 @@ class Game(
     renderer: Int = Phaser.AUTO,
     parent: String | html.Element = "") extends js.Object {
 
+  val state: StateManager = js.native
 }
