@@ -6,6 +6,9 @@ import org.scalajs.dom
 
 import pairs.client.phaser._
 
+class Square(val row: Int, val col: Int, val card: Int,
+    val front: Sprite, val back: Sprite)
+
 class GameState extends State {
   override def preload(): Unit = {
     load.image("back", "assets/back.png")
@@ -29,7 +32,17 @@ class GameState extends State {
 
       // Initially, the back is visible
       front.visible = false
+
+      // Setup click event
+      val square = new Square(row, col, card, front, back)
+      back.inputEnabled = true
+      back.events.onInputDown.add(() => doClick(square))
     }
+  }
+
+  private def doClick(square: Square): Unit = {
+    square.back.visible = false
+    square.front.visible = true
   }
 }
 
