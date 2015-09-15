@@ -19,6 +19,8 @@ class Game(
     parent: String | html.Element = "") extends js.Object {
 
   val state: StateManager = js.native
+
+  val add: GameObjectFactory = js.native
 }
 
 @js.native
@@ -33,9 +35,13 @@ class StateManager(val game: Game) extends js.Object {
 @js.native
 @JSName("Phaser.State")
 abstract class State extends js.Object {
+  protected final def game: Game = js.native
+
   protected final def load: Loader = js.native
 
   def preload(): Unit = js.native
+
+  def create(): Unit = js.native
 }
 
 @js.native
@@ -43,4 +49,17 @@ abstract class State extends js.Object {
 class Loader extends js.Object {
   def image(key: String, url: String = js.native,
       overwrite: Boolean = false): this.type = js.native
+}
+
+@js.native
+@JSName("Phaser.GameObjectFactory")
+class GameObjectFactory(game: Game) extends js.Object {
+  def sprite(x: Double = 0, y: Double = 0,
+      key: String = js.native): Sprite = js.native
+}
+
+@js.native
+@JSName("Phaser.Sprite")
+class Sprite protected () extends pixi.Sprite {
+
 }
