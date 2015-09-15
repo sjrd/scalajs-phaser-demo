@@ -13,4 +13,6 @@ abstract class State extends js.Object {
   def preload(): Unit = js.native
 
   def create(): Unit = js.native
+
+  def update(): Unit = js.native
 }
