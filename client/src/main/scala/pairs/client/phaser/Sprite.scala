@@ -5,6 +5,7 @@ import js.annotation._
 
 @js.native
 @JSName("Phaser.Sprite")
-class Sprite protected () extends pixi.Sprite {
+class Sprite protected () extends pixi.Sprite
+    with ComponentCore with InputEnabled {
 
 }
