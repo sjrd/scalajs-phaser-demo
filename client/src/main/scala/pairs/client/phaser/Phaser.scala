@@ -60,6 +60,29 @@ class GameObjectFactory(game: Game) extends js.Object {
 
 @js.native
 @JSName("Phaser.Sprite")
-class Sprite protected () extends pixi.Sprite {
+class Sprite protected () extends pixi.Sprite
+    with ComponentCore with InputEnabled {
 
+}
+
+@js.native
+trait ComponentCore extends js.Object {
+  val events: Events = js.native
+}
+
+@js.native
+trait InputEnabled extends js.Object {
+  var inputEnabled: Boolean = js.native
+}
+
+@js.native
+@JSName("Phaser.Events")
+class Events(sprite: Sprite) extends js.Object {
+  val onInputDown: Signal = js.native
+}
+
+@js.native
+@JSName("Phaser.Signal")
+class Signal extends js.Object {
+  def add(listener: js.Function): Unit = js.native
 }
