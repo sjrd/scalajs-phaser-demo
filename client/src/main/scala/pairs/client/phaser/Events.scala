@@ -6,5 +6,5 @@ import js.annotation._
 @js.native
 @JSName("Phaser.Events")
 class Events(sprite: Sprite) extends js.Object {
-  val onInputDown: Signal[js.Function1[Sprite, _]] = js.native
+  val onInputDown: Signal[js.Function1[Sprite, _], Sprite => Any] = js.native
 }
