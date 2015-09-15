@@ -13,6 +13,9 @@ class GameState extends State {
   private var firstClick: Option[Square] = None
   private var secondClick: Option[Square] = None
 
+  private var score: Int = 0
+  private var scoreText: js.Dynamic = null
+
   override def preload(): Unit = {
     load.image("back", "assets/back.png")
     for (i <- 0 to 9)
@@ -41,6 +44,10 @@ class GameState extends State {
       back.inputEnabled = true
       back.events.onInputDown.add((sprite: Sprite) => doClick(square))
     }
+
+    scoreText = game.asInstanceOf[js.Dynamic].add.text(
+        660, 20, "Score: 0",
+        js.Dynamic.literal(fontSize = "24px", fill = "#fff"))
   }
 
   private def doClick(square: Square): Unit = {
@@ -52,10 +59,12 @@ class GameState extends State {
       case (Some(first), None) if first.card == square.card =>
         // Found a pair
         firstClick = None
+        score += 50
 
       case (Some(_), None) =>
         // Missing a pair, need to hide it later
         secondClick = Some(square)
+        score -= 5
         js.timers.setTimeout(1000) {
           assert(firstClick.isDefined && secondClick.isDefined)
           for (square <- Seq(firstClick.get, secondClick.get)) {
@@ -73,6 +82,8 @@ class GameState extends State {
 
     square.back.visible = false
     square.front.visible = true
+
+    scoreText.text = s"Score: $score"
   }
 }
 
