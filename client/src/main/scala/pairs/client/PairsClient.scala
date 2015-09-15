@@ -7,6 +7,9 @@ import org.scalajs.dom
 import pairs.client.phaser._
 
 object GameState {
+  private class Square(val row: Int, val col: Int, val card: Int,
+      val front: Sprite, val back: Sprite)
+
   private final val Rows = 4
   private final val Cols = 5
   private final val TileSize = 130
@@ -38,7 +41,17 @@ class GameState extends State {
 
       // Initially, the back is visible
       front.visible = false
+
+      // Setup click event
+      val square = new Square(row, col, card, front, back)
+      back.inputEnabled = true
+      back.events.onInputDown.add(() => doClick(square))
     }
+  }
+
+  private def doClick(square: Square): Unit = {
+    square.back.visible = false
+    square.front.visible = true
   }
 }
 
