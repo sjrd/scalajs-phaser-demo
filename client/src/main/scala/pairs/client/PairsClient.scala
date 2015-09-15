@@ -1,5 +1,7 @@
 package pairs.client
 
+import scala.concurrent.duration._
+
 import scala.scalajs.js
 import js.annotation._
 import org.scalajs.dom
@@ -24,6 +26,10 @@ object GameState {
 @ScalaJSDefined
 class GameState extends State {
   import GameState._
+
+  private var firstClick: Option[Square] = None
+  private var secondClick: Option[Square] = None
+  private var hideDeadline: Option[Deadline] = None
 
   override def preload(): Unit = {
     load.image("back", "assets/back.png")
@@ -50,8 +56,40 @@ class GameState extends State {
   }
 
   private def doClick(square: Square): Unit = {
+    (firstClick, secondClick) match {
+      case (None, _) =>
+        // First click of a pair
+        firstClick = Some(square)
+
+      case (Some(first), None) if first.card == square.card =>
+        // Found a pair
+        firstClick = None
+
+      case (Some(_), None) =>
+        // Missing a pair, need to hide it later
+        secondClick = Some(square)
+        hideDeadline = Some(1.second.fromNow)
+
+      case (Some(_), Some(_)) =>
+        // Third click, cancel (have to wait for the deadline to elapse)
+        return
+    }
+
     square.back.visible = false
     square.front.visible = true
+  }
+
+  override def update(): Unit = {
+    if (hideDeadline.exists(_.isOverdue())) {
+      assert(firstClick.isDefined && secondClick.isDefined)
+      for (square <- Seq(firstClick.get, secondClick.get)) {
+        square.front.visible = false
+        square.back.visible = true
+      }
+      firstClick = None
+      secondClick = None
+      hideDeadline = None
+    }
   }
 }
 
