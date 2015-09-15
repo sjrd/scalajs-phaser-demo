@@ -8,7 +8,11 @@ import pairs.client.phaser._
 
 @ScalaJSDefined
 class GameState extends State {
-
+  override def preload(): Unit = {
+    load.image("back", "assets/back.png")
+    for (i <- 0 to 9)
+      load.image(i.toString(), s"assets/$i.png")
+  }
 }
 
 object PairsClient extends js.JSApp {

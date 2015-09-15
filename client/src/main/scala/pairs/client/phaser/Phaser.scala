@@ -33,5 +33,14 @@ class StateManager(val game: Game) extends js.Object {
 @js.native
 @JSName("Phaser.State")
 abstract class State extends js.Object {
+  protected final def load: Loader = js.native
 
+  def preload(): Unit = js.native
+}
+
+@js.native
+@JSName("Phaser.Loader")
+class Loader extends js.Object {
+  def image(key: String, url: String = js.native,
+      overwrite: Boolean = false): this.type = js.native
 }
