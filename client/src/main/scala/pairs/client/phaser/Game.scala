@@ -13,4 +13,6 @@ class Game(width: Double = 800, height: Double = 600,
     parent: String | html.Element = "") extends js.Object {
 
   val state: StateManager = js.native
+
+  val add: GameObjectFactory = js.native
 }
