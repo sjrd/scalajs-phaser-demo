@@ -39,6 +39,9 @@ object Server extends SimpleRoutingApp {
       } ~
       path("js" / Rest) { fileName =>
         getFromFile("../client/target/scala-2.11/" + fileName)
+      } ~
+      pathPrefix("assets") {
+        getFromResourceDirectory("assets")
       }
     }
   }
