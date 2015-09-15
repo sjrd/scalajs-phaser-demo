@@ -36,7 +36,7 @@ class GameState extends State {
       // Setup click event
       val square = new Square(row, col, card, front, back)
       back.inputEnabled = true
-      back.events.onInputDown.add(() => doClick(square))
+      back.events.onInputDown.add((sprite: Sprite) => doClick(square))
     }
   }
 

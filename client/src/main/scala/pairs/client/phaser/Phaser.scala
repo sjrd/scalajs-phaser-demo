@@ -80,11 +80,11 @@ trait InputEnabled extends js.Object {
 @js.native
 @JSGlobal("Phaser.Events")
 class Events(sprite: Sprite) extends js.Object {
-  val onInputDown: Signal = js.native
+  val onInputDown: Signal[js.Function1[Sprite, _]] = js.native
 }
 
 @js.native
 @JSGlobal("Phaser.Signal")
-class Signal extends js.Object {
-  def add(listener: js.Function): Unit = js.native
+class Signal[ListenerType <: js.Function] extends js.Object {
+  def add(listener: ListenerType): Unit = js.native
 }
