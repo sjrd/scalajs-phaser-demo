@@ -5,6 +5,6 @@ import js.annotation._
 
 @js.native
 @JSName("Phaser.Signal")
-class Signal extends js.Object {
-  def add(listener: js.Function): Unit = js.native
+class Signal[ListenerType <: js.Function] extends js.Object {
+  def add(listener: ListenerType): Unit = js.native
 }
