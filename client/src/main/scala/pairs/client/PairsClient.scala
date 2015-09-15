@@ -10,6 +10,9 @@ class Square(val row: Int, val col: Int, val card: Int,
     val front: Sprite, val back: Sprite)
 
 class GameState extends State {
+  private var firstClick: Option[Square] = None
+  private var secondClick: Option[Square] = None
+
   override def preload(): Unit = {
     load.image("back", "assets/back.png")
     for (i <- 0 to 9)
@@ -41,6 +44,33 @@ class GameState extends State {
   }
 
   private def doClick(square: Square): Unit = {
+    (firstClick, secondClick) match {
+      case (None, _) =>
+        // First click of a pair
+        firstClick = Some(square)
+
+      case (Some(first), None) if first.card == square.card =>
+        // Found a pair
+        firstClick = None
+
+      case (Some(_), None) =>
+        // Missing a pair, need to hide it later
+        secondClick = Some(square)
+        js.timers.setTimeout(1000) {
+          assert(firstClick.isDefined && secondClick.isDefined)
+          for (square <- Seq(firstClick.get, secondClick.get)) {
+            square.front.visible = false
+            square.back.visible = true
+          }
+          firstClick = None
+          secondClick = None
+        }
+
+      case (Some(_), Some(_)) =>
+        // Third click, cancel (have to wait for the deadline to elapse)
+        return
+    }
+
     square.back.visible = false
     square.front.visible = true
   }
