@@ -14,4 +14,6 @@ class Game(
     parent: String | html.Element = "") extends js.Object {
 
   val state: StateManager = js.native
+
+  val add: GameObjectFactory = js.native
 }
