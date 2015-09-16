@@ -24,6 +24,9 @@ object GameState {
     for (row <- 0 until Rows; col <- 0 until Cols) yield (row, col)
 }
 
+@JSExportAll
+class MyPoint(val x: Double, val y: Double)
+
 @ScalaJSDefined
 class GameState extends State {
   import GameState._
@@ -98,7 +101,7 @@ class GameState extends State {
     for (i <- 0 until score / 100) {
       val offset = i * 24
       def pt(x0: Double, y0: Double): PointLike =
-        js.use(new Point(x0 + offset, y0)).as[PointLike]
+        js.use(new MyPoint(x0 + offset, y0)).as[PointLike]
 
       val points = for (i <- (0 until 10).toJSArray) yield {
         val angle = 2*Math.PI/10 * i + Math.PI/2
