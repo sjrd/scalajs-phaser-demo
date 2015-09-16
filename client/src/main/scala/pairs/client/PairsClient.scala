@@ -2,6 +2,7 @@ package pairs.client
 
 import scala.scalajs.js
 import js.annotation._
+import js.JSConverters._
 import org.scalajs.dom
 
 import pairs.client.phaser._
@@ -16,6 +17,7 @@ class GameState extends State {
 
   private var score: Int = 0
   private var scoreText: js.Dynamic = null
+  private var scoreGraphics: Graphics = null
 
   override def preload(): Unit = {
     load.image("back", "assets/back.png")
@@ -49,6 +51,8 @@ class GameState extends State {
     scoreText = game.asInstanceOf[js.Dynamic].add.text(
         660, 20, "Score: 0",
         js.Dynamic.literal(fontSize = "24px", fill = "#fff"))
+
+    scoreGraphics = game.add.graphics(660, 50)
   }
 
   private def doClick(square: Square): Unit = {
@@ -85,6 +89,25 @@ class GameState extends State {
     square.front.visible = true
 
     scoreText.text = s"Score: $score"
+
+    scoreGraphics.clear()
+    for (i <- 0 until score / 100) {
+      val offset = i * 24
+      def pt(x0: Double, y0: Double): PointLike = new PointLike {
+        val x = x0
+        val y = y0
+      }
+
+      val points = for (i <- (0 until 10).toJSArray) yield {
+        val angle = 2*Math.PI/10 * i + Math.PI/2
+        val len = if (i % 2 == 0) 10 else 4
+        pt(offset + 10 + len*Math.cos(angle), 10 - len*Math.sin(angle))
+      }
+
+      scoreGraphics.beginFill(0xFFD700)
+      scoreGraphics.drawPolygon(points)
+      scoreGraphics.endFill()
+    }
   }
 }
 
