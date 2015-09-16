@@ -10,6 +10,9 @@ import pairs.client.phaser._
 class Square(val row: Int, val col: Int, val card: Int,
     val front: Sprite, val back: Sprite)
 
+@JSExportAll
+class MyPoint(val x: Double, val y: Double)
+
 class GameState extends State {
   private var firstClick: Option[Square] = None
   private var secondClick: Option[Square] = None
@@ -93,7 +96,7 @@ class GameState extends State {
     for (i <- 0 until score / 100) {
       val offset = i * 24
       def pt(x0: Double, y0: Double): PointLike =
-        js.use(new Point(x0, y0)).as[PointLike]
+        js.use(new MyPoint(x0, y0)).as[PointLike]
 
       val points = for (i <- (0 until 10).toJSArray) yield {
         val angle = 2*Math.PI/10 * i + Math.PI/2
