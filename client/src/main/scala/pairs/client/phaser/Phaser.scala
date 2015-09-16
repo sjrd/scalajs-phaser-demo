@@ -57,6 +57,8 @@ class Loader extends js.Object {
 class GameObjectFactory(game: Game) extends js.Object {
   def sprite(x: Double = 0, y: Double = 0,
       key: String = js.native): Sprite = js.native
+
+  def graphics(x: Double = 0, y: Double = 0): Graphics = js.native
 }
 
 @js.native
@@ -87,4 +89,18 @@ class Events(sprite: Sprite) extends js.Object {
 @JSGlobal("Phaser.Signal")
 class Signal[ListenerType <: js.Function] extends js.Object {
   def add(listener: ListenerType): Unit = js.native
+}
+
+@js.native
+@JSGlobal("Phaser.Graphics")
+class Graphics protected () extends js.Object {
+  def clear(): Unit = js.native
+  def beginFill(color: Int): Unit = js.native
+  def endFill(): Unit = js.native
+  def drawPolygon(path: js.Array[PointLike]): Unit = js.native
+}
+
+trait PointLike extends js.Object {
+  def x: Double
+  def y: Double
 }
