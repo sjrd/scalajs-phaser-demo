@@ -73,7 +73,8 @@ trait ComponentCore extends js.Object {
 
 @js.native
 trait InputEnabled extends js.Object {
-  var inputEnabled: Boolean = js.native
+  def inputEnabled: Boolean = js.native
+  def inputEnabled_=(value: Boolean): Unit = js.native
 }
 
 @js.native
