@@ -14,7 +14,7 @@ class GameState extends State {
 object PairsClient extends js.JSApp {
   def main(): Unit = {
     val game = new Game(width = 800, height = 520, parent = "pairs-container")
-    game.state.add("game", js.constructorOf[GameState])
+    game.state.add("game", new GameState)
     game.state.start("game")
   }
 }
