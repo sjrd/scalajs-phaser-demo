@@ -97,7 +97,7 @@ class GameState extends State {
     for (i <- 0 until score / 100) {
       val offset = i * 24
       def pt(x0: Double, y0: Double): PointLike =
-        new Point(x0 + offset, y0)
+        js.use(new Point(x0 + offset, y0)).as[PointLike]
 
       val points = for (i <- (0 until 10).toJSArray) yield {
         val angle = 2*Math.PI/10 * i + Math.PI/2
