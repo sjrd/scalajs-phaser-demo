@@ -96,10 +96,8 @@ class GameState extends State {
     scoreGraphics.clear()
     for (i <- 0 until score / 100) {
       val offset = i * 24
-      def pt(x0: Double, y0: Double): PointLike = new PointLike {
-        val x = x0 + offset
-        val y = y0
-      }
+      def pt(x0: Double, y0: Double): PointLike =
+        new Point(x0 + offset, y0)
 
       val points = for (i <- (0 until 10).toJSArray) yield {
         val angle = 2*Math.PI/10 * i + Math.PI/2
