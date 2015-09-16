@@ -8,4 +8,6 @@ import js.annotation._
 class GameObjectFactory(game: Game) extends js.Object {
   def sprite(x: Double = 0, y: Double = 0,
       key: String = js.native): Sprite = js.native
+
+  def graphics(x: Double = 0, y: Double = 0): Graphics = js.native
 }
