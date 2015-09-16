@@ -104,3 +104,7 @@ trait PointLike extends js.Object {
   def x: Double
   def y: Double
 }
+
+@js.native
+@JSName("Phaser.Point")
+class Point(var x: Double = 0, var y: Double = 0) extends PointLike
