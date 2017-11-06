@@ -1,7 +1,7 @@
 val commonSettings = Seq(
   version := "0.1.0-SNAPSHOT",
   scalaVersion := "2.12.4",
-  scalacOptions ++= Seq("-deprecation", "-feature", "-encoding", "utf-8")
+  scalacOptions ++= Seq("-deprecation", "-feature", "-encoding", "utf-8", "-Xfatal-warnings")
 )
 
 lazy val `pairs-client` = project.in(file("client")).
