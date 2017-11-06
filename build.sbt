@@ -12,8 +12,7 @@ lazy val `pairs-client` = project.in(file("client")).
     libraryDependencies ++= Seq(
       "org.scala-js" %%% "scalajs-dom" % "0.9.3"
     ),
-    persistLauncher in Compile := true,
-    persistLauncher in Test := false
+    scalaJSUseMainModuleInitializer := true
   )
 
 lazy val `pairs-server` = project.in(file("server")).

@@ -20,7 +20,6 @@ object Server {
         <div id="pairs-container"/>
         <script type="application/javascript" src="//cdnjs.cloudflare.com/ajax/libs/phaser/2.4.3/phaser.min.js"></script>
         <script type="application/javascript" src="/js/pairs-client-fastopt.js"></script>
-        <script type="application/javascript" src="/js/pairs-client-launcher.js"></script>
       </body>
     </html>
   """
