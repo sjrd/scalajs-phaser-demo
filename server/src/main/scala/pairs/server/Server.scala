@@ -18,7 +18,7 @@ object Server {
       <body>
         <h1>Pairs</h1>
         <div id="pairs-container"/>
-        <script type="application/javascript" src="//cdnjs.cloudflare.com/ajax/libs/phaser/2.4.3/phaser.min.js"></script>
+        <script type="application/javascript" src="assets/phaser.min.js"></script>
         <script type="application/javascript" src="/js/pairs-client-fastopt.js"></script>
       </body>
     </html>
