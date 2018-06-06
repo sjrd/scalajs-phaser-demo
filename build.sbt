@@ -1,6 +1,6 @@
 val commonSettings = Seq(
   version := "0.1.0-SNAPSHOT",
-  scalaVersion := "2.12.4",
+  scalaVersion := "2.12.6",
   scalacOptions ++= Seq("-deprecation", "-feature", "-encoding", "utf-8", "-Xfatal-warnings")
 )
 
@@ -8,11 +8,12 @@ lazy val `pairs-client` = project.in(file("client")).
   enablePlugins(ScalaJSPlugin).
   settings(commonSettings).
   settings(
-    scalacOptions += "-P:scalajs:sjsDefinedByDefault",
+    //scalacOptions += "-P:scalajs:sjsDefinedByDefault",
     libraryDependencies ++= Seq(
-      "org.scala-js" %%% "scalajs-dom" % "0.9.3"
+      "org.scala-js" %%% "scalajs-dom" % "0.9.6"
     ),
-    scalaJSUseMainModuleInitializer := true
+    scalaJSUseMainModuleInitializer := true,
+    scalaJSLinkerConfig ~= { _.withESFeatures(_.withUseECMAScript2015(true)) }
   )
 
 lazy val `pairs-server` = project.in(file("server")).

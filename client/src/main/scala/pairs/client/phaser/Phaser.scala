@@ -97,7 +97,7 @@ class Graphics protected () extends js.Object {
   def clear(): Unit = js.native
   def beginFill(color: Int): Unit = js.native
   def endFill(): Unit = js.native
-  def drawPolygon(path: js.Array[PointLike]): Unit = js.native
+  def drawPolygon(path: js.Array[js.Tuple2[Double, Double]]): Unit = js.native
 }
 
 trait PointLike extends js.Object {
