@@ -99,8 +99,3 @@ class Graphics protected () extends js.Object {
   def endFill(): Unit = js.native
   def drawPolygon(path: js.Array[js.Tuple2[Double, Double]]): Unit = js.native
 }
-
-trait PointLike extends js.Object {
-  def x: Double
-  def y: Double
-}

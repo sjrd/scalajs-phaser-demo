@@ -17,8 +17,11 @@ object Server {
       </head>
       <body>
         <h1>Pairs</h1>
-        <div id="pairs-container"/>
+        <div id="pairs-container-js"></div>
+        <hr/>
+        <div id="pairs-container"></div>
         <script type="application/javascript" src="assets/phaser.min.js"></script>
+        <script type="application/javascript" src="assets/js-implem.js"></script>
         <script type="application/javascript" src="/js/pairs-client-fastopt.js"></script>
       </body>
     </html>
