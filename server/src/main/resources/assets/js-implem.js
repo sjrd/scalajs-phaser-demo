@@ -15,15 +15,17 @@ class GameState extends Phaser.State {
   }
 
   create() {
-    const starsGraphics = this.game.add.graphics(50, 50);
-    for (let i = 0; i < this._starCount; i++) {
-      const points = this._makeStarPolygon(i * 24).map(
-        pt => [pt.x, pt.y]
-      );
-      starsGraphics.beginFill(0xFFD700);
-      starsGraphics.drawPolygon(points);
-      starsGraphics.endFill();
-    }
+    const gr = this.game.add.graphics(50, 50);
+    for (let i = 0; i < this._starCount; i++)
+      this._drawStar(gr, i * 24);
+  }
+
+  _drawStar(gr, offset) {
+    gr.beginFill(0xFFD700);
+    gr.drawPolygon(this._makeStarPolygon(offset).map(
+      pt => [pt.x, pt.y]
+    ));
+    gr.endFill();
   }
 
   _makeStarPolygon(offset) {

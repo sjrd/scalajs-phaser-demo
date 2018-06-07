@@ -9,15 +9,17 @@ final case class Point(x: Double, y: Double)
 
 class GameState(starCount: Int) extends State {
   override def create(): Unit = {
-    val starsGraphics = game.add.graphics(50, 50)
-    for (i <- 0 until starCount) {
-      val points = makeStarPolygon(i * 24).toJSArray.map {
-        case Point(x, y) => js.Tuple2(x, y)
-      }
-      starsGraphics.beginFill(0xFFD700)
-      starsGraphics.drawPolygon(points)
-      starsGraphics.endFill()
-    }
+    val gr = game.add.graphics(50, 50)
+    for (i <- 0 until starCount)
+      drawStar(gr, i * 24)
+  }
+
+  private def drawStar(gr: Graphics, offset: Double): Unit = {
+    gr.beginFill(0xFFD700)
+    gr.drawPolygon(makeStarPolygon(offset).toJSArray.map {
+      case Point(x, y) => js.Tuple2(x, y)
+    })
+    gr.endFill()
   }
 
   private def makeStarPolygon(offset: Double): Seq[Point] = {
