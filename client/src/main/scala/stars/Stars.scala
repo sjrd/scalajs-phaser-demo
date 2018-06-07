@@ -35,7 +35,7 @@ class GameState(starCount: Int) extends State {
 object Stars {
   def main(args: Array[String]): Unit = {
     val game = new Game(width = 300, height = 124,
-        parent = "pairs-container")
+        parent = "stars-container")
     game.state.add("game", new GameState(5))
     game.state.start("game")
   }

@@ -42,7 +42,7 @@ class GameState extends Phaser.State {
 }
 
 const game = new Phaser.Game(300, 124, undefined,
-  "pairs-container-js");
+  "stars-container-js");
 game.state.add("game", new GameState(5));
 game.state.start("game");
 
