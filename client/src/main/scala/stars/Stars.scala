@@ -3,7 +3,7 @@ package stars
 import scala.scalajs.js
 import scala.scalajs.js.JSConverters._
 
-import stars.phaser._
+import stars.phaser.Phaser._
 
 final case class Point(x: Double, y: Double)
 
