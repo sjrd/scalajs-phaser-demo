@@ -1,4 +1,4 @@
-package pairs.client.phaser
+package stars.phaser
 
 import scala.scalajs.js
 import js.annotation._

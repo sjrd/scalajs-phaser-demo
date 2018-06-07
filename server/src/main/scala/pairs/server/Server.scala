@@ -13,10 +13,10 @@ object Server {
   private val Index = """
     <html>
       <head>
-        <title>Pairs</title>
+        <title>Stars</title>
       </head>
       <body>
-        <h1>Pairs</h1>
+        <h1>Stars</h1>
         <div id="pairs-container-js"></div>
         <hr/>
         <div id="pairs-container"></div>

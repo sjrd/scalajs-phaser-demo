@@ -1,9 +1,9 @@
-package pairs.client
+package stars
 
 import scala.scalajs.js
 import scala.scalajs.js.JSConverters._
 
-import pairs.client.phaser._
+import stars.phaser._
 
 final case class Point(x: Double, y: Double)
 
@@ -20,8 +20,7 @@ class GameState(starCount: Int) extends State {
     }
   }
 
-  private def makeStarPolygon(
-      offset: Double): Seq[Point] = {
+  private def makeStarPolygon(offset: Double): Seq[Point] = {
     for (i <- 0 until 10) yield {
       val angle = 2*Math.PI/10 * i + Math.PI/2
       val len = if (i % 2 == 0) 10 else 4
@@ -31,7 +30,7 @@ class GameState(starCount: Int) extends State {
   }
 }
 
-object PairsClient {
+object Stars {
   def main(args: Array[String]): Unit = {
     val game = new Game(width = 300, height = 124,
         parent = "pairs-container")
